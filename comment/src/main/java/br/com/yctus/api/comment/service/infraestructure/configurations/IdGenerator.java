@@ -16,11 +16,11 @@ public class IdGenerator implements Serializable {
 
     private static final TSID tsIdFac = TSID.Factory.builder().build().generate();
 
-    public static UUID generateTSID() {
+    public static UUID generateID() {
         return idGenerator.generate();
     }
 
-    public static TSID generateId() {
+    public static TSID generateTsid() {
         return TSID.Factory.builder().build().generate();
     }
 }

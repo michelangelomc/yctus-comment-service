@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.hypersistence.tsid.TSID;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 public class CommentRequest {
     @JsonIgnore
-    public TSID postId = IdGenerator.generateId();
+    public UUID postId = IdGenerator.generateID();
 
     public String author;
     public String content;
