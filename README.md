@@ -1,4 +1,35 @@
 # yctus-comment-service
+
+## Estrutura do Projeto
+ - src
+   - main
+     - java
+       - com.yctus.commentservice
+         - api
+           - CommentController
+           - middleware
+         - application
+           - enuns
+           - mappers
+           - models
+           - usecases
+           - utils
+         - crosscuting
+           - utils
+         - domain
+           - abstractions
+           - entities
+           - enuns
+           - gateways
+           - utils
+     - infraestructure
+       - configurations
+       - dataproviders
+       - filter
+       - hekthchecks
+       - properties
+       - utils
+
 serviço de comentários
 ## 🏗️ Microsserviço 1: CommentService
 
