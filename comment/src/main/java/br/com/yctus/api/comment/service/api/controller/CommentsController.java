@@ -1,17 +1,15 @@
 package br.com.yctus.api.comment.service.api.controller;
 
+import br.com.yctus.api.comment.service.application.usecases.CommentServiceUseCase;
 import br.com.yctus.api.comment.service.domain.entities.request.CommentRequest;
 import br.com.yctus.api.comment.service.domain.entities.response.CommentResponse;
+import br.com.yctus.api.comment.service.domain.entities.response.CommentServiceResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
-import java.util.List;
 
 
 @RestController
@@ -19,37 +17,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommentsController {
 
+    private final CommentServiceUseCase commentServiceUseCase;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CommentResponse createComment(@RequestBody CommentRequest commentRequest) {
-        return CommentResponse.builder()
-                .feedback("Comment created for postId: " + commentRequest.postId)
-                .error(" - ")
-                .build();
+        return commentServiceUseCase.createComment(commentRequest);
     }
 
     @GetMapping
-    public Page<CommentResponse> getAllComments(@PageableDefault Pageable pageable) {
-        List<CommentResponse> comments =
-                Arrays.asList(
-                        CommentResponse.builder()
-                                .feedback("Comment with id: 1254")
-                                .error(" - ")
-                                .build(),
-                        CommentResponse.builder()
-                                .feedback("Comment with id: 125478" )
-                                .error(" - ")
-                                .build());
-
-        return new PageImpl<>(comments, pageable, comments.size());
+    public Page<CommentServiceResponse> getAllComments(@PageableDefault Pageable pageable) {
+        return commentServiceUseCase.getAllComments(pageable);
     }
 
-
     @GetMapping("{id}")
-    public CommentResponse getCommentById(@PathVariable long id) {
-        return CommentResponse.builder()
-                .feedback("Comment with id: " + id)
-                .error(" - ")
-                .build();
+    public CommentServiceResponse getCommentById(@PathVariable String id) {
+        return commentServiceUseCase.getCommentById(id);
     }
 }
