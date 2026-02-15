@@ -4,7 +4,9 @@ import br.com.yctus.api.comment.service.application.usecases.CommentServiceUseCa
 import br.com.yctus.api.comment.service.domain.entities.request.CommentRequest;
 import br.com.yctus.api.comment.service.domain.entities.response.CommentResponse;
 import br.com.yctus.api.comment.service.domain.entities.response.CommentServiceResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -21,8 +23,15 @@ public class CommentsController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CommentResponse createComment(@RequestBody CommentRequest commentRequest) {
-        return commentServiceUseCase.createComment(commentRequest);
+    public CommentResponse createComment(@RequestBody @Valid CommentRequest commentRequest) throws BadRequestException {
+        try {
+            return commentServiceUseCase.createComment(commentRequest);
+        } catch (Exception e) {
+            return CommentResponse.builder()
+                    .error(e.getMessage())
+                    .feedback(String.format("Erro ao criar comentário: %s", e.getMessage()))
+                    .build();
+        }
     }
 
     @GetMapping
