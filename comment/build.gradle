@@ -33,6 +33,7 @@ dependencies {
     implementation 'io.hypersistence:hypersistence-tsid:2.1.4'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.20.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.20.0'
+    implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
