@@ -1,12 +1,11 @@
-/*package br.com.yctus.api.comment.service.infraestructure.configurations.web;
+package br.com.yctus.api.comment.service.infraestructure.configurations.web;
 
 import br.com.yctus.api.comment.service.infraestructure.configurations.web.exception.CommentSeviceClientException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -16,7 +15,7 @@ import java.nio.channels.ClosedChannelException;
 import java.util.concurrent.TimeoutException;
 
 @RestControllerAdvice
-public class ApiExceptionHandler  extends ResponseStatusExceptionHandler {
+public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({
             SocketTimeoutException.class,
@@ -41,4 +40,4 @@ public class ApiExceptionHandler  extends ResponseStatusExceptionHandler {
         return problemDetail;
     }
 }
-*/
+
