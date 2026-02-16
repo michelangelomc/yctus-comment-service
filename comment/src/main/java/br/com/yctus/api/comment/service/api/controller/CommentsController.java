@@ -23,7 +23,7 @@ public class CommentsController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CommentResponse createComment(@RequestBody @Valid CommentRequest commentRequest) throws BadRequestException {
+    public CommentResponse createComment(@RequestBody @Valid CommentRequest commentRequest){
         try {
             return commentServiceUseCase.createComment(commentRequest);
         } catch (Exception e) {
